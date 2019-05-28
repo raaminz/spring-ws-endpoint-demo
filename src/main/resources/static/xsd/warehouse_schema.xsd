@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:p="http://www.compilepodcast.fm/schemas" elementFormDefault="qualified" targetNamespace="http://www.compilepodcast.fm/schemas" version="1.0">
+
+  <xs:element name="warehouseSearchRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="address" type="p:addressTypeRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="warehouseSearchResponse" type="p:warehouseSearchResponse"/>
+
+  <xs:complexType name="addressTypeRequest">
+    <xs:all>
+      <xs:element name="country" type="xs:string"/>
+      <xs:element name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="address1" type="xs:string"/>
+      <xs:element minOccurs="0" name="address2" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="addressTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="country" type="xs:string"/>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="address1" type="xs:string"/>
+      <xs:element minOccurs="0" name="address2" type="xs:string"/>
+      <xs:element minOccurs="0" name="province" type="xs:string"/>
+      <xs:element minOccurs="0" name="longitude" type="xs:int"/>
+      <xs:element minOccurs="0" name="latitude" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="warehouseSearchResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="warehouses">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="warehouse" type="p:warehouseTypeResponse"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="warehouseTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="createdDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="address" type="p:addressTypeResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
